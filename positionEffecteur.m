@@ -48,12 +48,5 @@ v_w_TwW = wRa * aRb * bRc * cRd * dRe * [0.02,0,0]' + v_w_EwW;
 % Grosse matrice en colonnes
 affichagePoint = [[0,0,0]',v_w_AwW, v_w_BwW,v_w_CwW, v_w_DwW,v_w_EwW,v_w_TwW];
 
-affichagePoint(1,1:end);
-affichagePoint(2,1:end);
-affichagePoint(3,1:end);
-
-plot3(affichagePoint(1,1:end),affichagePoint(2,1:end),affichagePoint(3,1:end))
-grid on
-
 matrice_points = affichagePoint;
 pos_effect = v_w_TwW;
