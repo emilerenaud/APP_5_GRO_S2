@@ -5,15 +5,15 @@ hd = 0.05;
 lb = 0.15;
 
 Y = [0.013914,0.021067,0.039266,0.04597,0.053326]';
-Z = [0.028686,0.008891,-0.040587,-0.060395,-0.080185,
+Z = [0.028686,0.008891,-0.040587,-0.060395,-0.080185;
      1,       1,        1,        1,        1]';
 
-plot(Z,Y)
+% plot(Z,Y)
 
 %X1 = A' * inv(A*A') * Y
-X2 = inv(Z' * Z) * Z' * Y
+
 %X3 = A\Y
- % x et X2 donne la meme chose.
+% x et X2 donne la meme chose.
 %atand(X1)
 atand(X2)
 % trouver angle nominal 

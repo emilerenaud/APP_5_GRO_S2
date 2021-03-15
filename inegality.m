@@ -22,11 +22,13 @@ clear
 %ezplot('x^2+y^2-4*x-8*y+10-2*log(2)',[-2 6 0 8])
 %plot((3/850)*(-5 * sqrt(2) * sqrt(-800*x.^2 + 176*x -9) - 50*x +14))
 %ezplot('(10625*x*y)/303 +  (10625 *(x - (3/25))^2)/202 + (180625 * (y - (21/425))^2)/1818')
-syms x y 
-eq1 = 45*x^2 + 30*x*y + 85*y^2 - 10.8*x - 8.4*y + 0.684 == 0;
-result = solve(eq1,y)
-fplot(result)
-
-
+% syms x y 
+% eq1 = 45*x^2 + 30*x*y + 85*y^2 - 10.8*x - 8.4*y + 0.684 == 0;
+% result = solve(eq1,y);
+% test = fcontour(result);
+% plot(test)
+zone = @(x,y) 45*x.^2 + 30*x.*y + 85*y.^2 - 10.8*x - 8.4*y + 0.684
+zhandle = fcontour(zone,'LineWidth',1,'LineColor','r','LevelList',0)
+axis([-0.02 0.15 -0.05 0.12])
 
 

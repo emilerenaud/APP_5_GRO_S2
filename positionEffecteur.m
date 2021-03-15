@@ -1,4 +1,4 @@
-function [point_p] = positionEffecteur()
+function [v_t_PwT] = positionEffecteur()
 
 %----- Angles joints -----%
 theta1 = -0.4;
@@ -59,7 +59,6 @@ v_w_DwW = wRa * aRb * bRc * [0.1,0.02,0]' + v_w_CwW;
 v_w_EwW = wRa * aRb * bRc * cRd * [0.3,0,0]' + v_w_DwW;
 v_w_TwW = wRa * aRb * bRc * cRd * dRe * [0.02,0,0]' + v_w_EwW;
 % 
-difference = [0.5994,0,0.1991]' - v_w_TwW;
+v_w_PwT = [0.5994,0,0.1991]' - v_w_TwW;
 
-v_t_PwT = inv(eRt) * inv(dRe) * inv(cRd) * inv(bRc) * inv(aRb) * inv(wRa) * difference;
-point_p = v_t_PwT;
+v_t_PwT = inv(eRt) * inv(dRe) * inv(cRd) * inv(bRc) * inv(aRb) * inv(wRa) * v_w_PwT;
