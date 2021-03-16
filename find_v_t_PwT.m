@@ -1,4 +1,4 @@
-function [v_t_PwT] = positionEffecteur()
+function [v_t_PwT] = find_v_t_PwT()
 
 %----- Angles joints -----%
 theta1 = -0.4;
