@@ -58,6 +58,7 @@ v_w_CwW = wRa * aRb * [0,0.5,0]' + v_w_BwW;
 v_w_DwW = wRa * aRb * bRc * [0.1,0.02,0]' + v_w_CwW;
 v_w_EwW = wRa * aRb * bRc * cRd * [0.3,0,0]' + v_w_DwW;
 v_w_TwW = wRa * aRb * bRc * cRd * dRe * [0.02,0,0]' + v_w_EwW;
+
 % 
 v_w_PwT = [0.5994,0,0.1991]' - v_w_TwW;
 

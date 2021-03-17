@@ -79,7 +79,8 @@ v_w_EwW = wRa * aRb * bRc * cRd * [0.3,0,0]' + v_w_DwW;
 v_w_TwW = wRa * aRb * bRc * cRd * dRe * [0.02,0,0]' + v_w_EwW;
 
 % point P
-v_w_PwW = wRa * aRb * bRc * cRd * dRe * eRt * find_v_t_PwT() + v_w_TwW; % changer le nom de fonction
+v_w_PwW = wRa * aRb * bRc * cRd * dRe * eRt * find_v_t_PwT() + v_w_TwW; 
+
 disp(['Point T en fonction de W en base W : X:', num2str(v_w_TwW(1)), ' Y:', num2str(v_w_TwW(2)), ' Z:', num2str(v_w_TwW(3))]);
 % Mettre tous les points dans une matrice pour l'afficher
 affichageJoints = [[0,0,0]',v_w_AwW, v_w_BwW,v_w_CwW, v_w_DwW,v_w_EwW,v_w_TwW];
@@ -91,19 +92,21 @@ xlabel('x(m)');
 ylabel('y(m)');
 zlabel('z(m)');
 %----- Défaut sur la pièce -----%
-0
+
 % Mettre les defauts par rapport W en base W
-v_w_D1wW = wRv * Df1_v_Df1Wv + [0.8,0.7,0]'; % + [0.8,0.7,0] c'est l'offset de la camera
+v_w_D1wW = wRv * Df1_v_Df1Wv + [0.8,0.7,0]'; 
 v_w_D2wW = wRv * Df2_v_Df2Wv + [0.8,0.7,0]';
 v_w_D3wW = wRv * Df3_v_Df3Wv + [0.8,0.7,0]';
 v_w_D4wW = wRv * Df4_v_Df4Wv + [0.8,0.7,0]';
 v_w_D5wW = wRv * Df5_v_Df5Wv + [0.8,0.7,0]';
-% Mettre les defauts par rapport P en base W. Trouver l'offset entre P et D
+
+% Trouver distance entre les défauts et P en base W
 v_w_D1wP = v_w_D1wW - v_w_PwW;
 v_w_D2wP = v_w_D2wW - v_w_PwW;
 v_w_D3wP = v_w_D3wW - v_w_PwW;
 v_w_D4wP = v_w_D4wW - v_w_PwW;
 v_w_D5wP = v_w_D5wW - v_w_PwW;
+
 % Mettre les defauts par rapport a P et base P
 v_p_D1wP =  pRw * v_w_D1wP;
 v_p_D2wP =  pRw * v_w_D2wP;
@@ -111,31 +114,36 @@ v_p_D3wP =  pRw * v_w_D3wP;
 v_p_D4wP =  pRw * v_w_D4wP;
 v_p_D5wP =  pRw * v_w_D5wP;
 
-MatriceDefauts = [v_p_D1wP,v_p_D2wP,v_p_D3wP,v_p_D4wP,v_p_D5wP];
+MatriceDefauts = [v_p_D1wP,v_p_D2wP,v_p_D3wP,v_p_D4wP,v_p_D5wP]
 
 
 %----- Points tranche -----%
-% Mettre les points en base W
+% Mettre les points en base W par rapport à W
 v_w_Ti1wW = wRv * Ti1_v_Ti1wV + [0.8,0.7,0]';
 v_w_Ti2wW = wRv * Ti2_v_Ti2wV + [0.8,0.7,0]';
 v_w_Ti3wW = wRv * Ti3_v_Ti3wV + [0.8,0.7,0]';
 v_w_Ti4wW = wRv * Ti4_v_Ti4wV + [0.8,0.7,0]';
 v_w_Ti5wW = wRv * Ti5_v_Ti5wV + [0.8,0.7,0]';
-% Trouver offset entre P et Ti en base W
+
+% Trouver distance entre P et Ti en base W
 v_w_T1wP = v_w_Ti1wW - v_w_PwW;
 v_w_T2wP = v_w_Ti2wW - v_w_PwW;
 v_w_T3wP = v_w_Ti3wW - v_w_PwW;
 v_w_T4wP = v_w_Ti4wW - v_w_PwW;
 v_w_T5wP = v_w_Ti5wW - v_w_PwW;
+
 % Mettre le vecteur en base P
 v_p_T1wP = pRw * v_w_T1wP;
 v_p_T2wP = pRw * v_w_T2wP;
 v_p_T3wP = pRw * v_w_T3wP;
 v_p_T4wP = pRw * v_w_T4wP;
 v_p_T5wP = pRw * v_w_T5wP;
+
 % Stocker les points dans une matrice
-matricePointTranche = [v_p_T1wP,v_p_T2wP,v_p_T3wP,v_p_T4wP,v_p_T5wP];
+matricePointTranche = [v_p_T1wP,v_p_T2wP,v_p_T3wP,v_p_T4wP,v_p_T5wP]
+% Faire une matrice avec une colonne de X et une colonne de 1
 pointTranche_X = [matricePointTranche(1,1:end)',ones(1,5)'];
+% Matrice avec une colonne de Y
 pointTranche_Y = matricePointTranche(2,1:end)';
 
 % Trouver l'angle de la tranche
@@ -147,9 +155,10 @@ theta_nom = atand((hg-hd)/lb);
 difference_theta_tranche = theta_tranche - theta_nom
 
 % Calculer la hauteur
+xb(2)
 difference_hg = abs(hg - xb(2))
 
-% Calculer inégalité
+% A inégalité
 figure(2);
 zone_critique = @(x,y) 45*x.^2 + 30*x.*y + 85*y.^2 - 10.8*x - 8.4*y + 0.684;
 fcontour(zone_critique,'LineWidth',1,'LineColor','r','LevelList',0);
@@ -177,6 +186,7 @@ end
 figure(2)
 point_piece = [0,0,lb,lb,0;
                0,hg,hd,0,0];
+           
 plot(point_piece(1,1:end),point_piece(2,1:end),'k.-','Markersize',15);
 hold on;
 
